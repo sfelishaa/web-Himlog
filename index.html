@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Modul Logika — Materi & Modul (Satu Halaman)</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg-0: #ffffff; /* putih */
+        --bg-1: #f4f4f4; /* abu very light */
+        --card: #ffffff;
+        --border: #d9d9d9;
+        --text: #2b2b2b; /* abu gelap untuk teks */
+        --muted: #555555;
+        --accent: #444444; /* tombol / highlight */
+        --accent-2: #000000; /* hover */
+        --ok: #16a34a;
+        --table-true: #e8e8e8; /* T background */
+        --table-false: #ffffff; /* F background */
+        --table-border: #cccccc;
+        --radius: 12px;
+        --shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+        background: linear-gradient(180deg, var(--bg-1), var(--bg-0));
+        color: var(--text);
+        min-height: 100vh;
+        padding: 28px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+      }
+
+      .wrap {
+        width: 100%;
+        max-width: 1100px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        align-items: start;
+      }
+
+      h1 {
+        font-family: "Press Start 2P", cursive;
+        color: var(--accent);
+        margin: 0 0 12px;
+        font-size: 20px;
+        text-align: center;
+        grid-column: 1/-1;
+      }
+
+      .card {
+        background: var(--card);
+        border-radius: var(--radius);
+        padding: 20px;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+      }
+
+      .title {
+        font-family: "Press Start 2P", cursive;
+        color: var(--accent);
+        font-size: 14px;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+
+      p {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.6;
+        margin: 8px 0;
+      }
+      ul {
+        margin: 8px 0 0 18px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      .actions {
+        margin-top: 12px;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      a.link {
+        display: inline-block;
+        margin-top: 8px;
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 13px;
+      }
+
+      label {
+        display: block;
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+
+      select,
+      input[type="text"],
+      button {
+        padding: 10px 12px;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        background: var(--bg-0);
+        font-size: 13px;
+        color: var(--text);
+      }
+
+      button {
+        cursor: pointer;
+        background: var(--accent);
+        color: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        transition: background 0.12s ease, transform 0.08s ease;
+      }
+      button:hover {
+        background: var(--accent-2);
+        transform: translateY(-2px);
+      }
+      button.secondary {
+        background: #6b6b6b;
+      }
+
+      /* table styling */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 12px;
+        font-size: 13px;
+      }
+      th,
+      td {
+        border: 1px solid var(--table-border);
+        padding: 8px;
+        text-align: center;
+      }
+      thead th {
+        background: #fafafa;
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      td.true {
+        background: var(--table-true);
+        color: var(--text);
+        font-weight: 700;
+      }
+      td.false {
+        background: var(--table-false);
+        color: var(--text);
+        font-weight: 700;
+      }
+
+      .done-badge {
+        display: inline-block;
+        background: var(--ok);
+        color: #fff;
+        padding: 6px 8px;
+        border-radius: 8px;
+        font-size: 12px;
+        margin-left: 10px;
+      }
+
+      .small-note {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 8px;
+        text-align: center;
+      }
+
+      @media (max-width: 980px) {
+        .wrap {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>🧠 Modul Logika — Ekuivalen / Invers / Konvers</h1>
+
+      <!-- Materi -->
+      <div class="card">
+        <div class="title">📘 Materi Ringkas</div>
+
+        <h3 style="margin: 0 0 8px; color: var(--accent); font-size: 13px">
+          Inti — Ekuivalen, Invers, Konvers
+        </h3>
+
+        <p>
+          <strong>Ekuivalen (p ↔ q)</strong> — dua pernyataan ekuivalen jika
+          selalu memiliki nilai kebenaran yang sama (keduanya T atau keduanya
+          F).
+        </p>
+
+        <p>
+          <strong>Invers</strong> — invers dari implikasi p → q adalah ¬p → ¬q.
+          Invers tidak selalu ekuivalen dengan implikasi asal.
+        </p>
+
+        <p>
+          <strong>Konvers</strong> — konvers dari p → q adalah q → p. Konvers
+          tidak selalu setara dengan pernyataan asal.
+        </p>
+
+        <div style="margin-top: 10px">
+          <strong>Contoh konteks pesantren</strong>
+          <ul>
+            <li>p: "Santri rutin mengaji setiap pagi"</li>
+            <li>q: "Kedisiplinan santri meningkat"</li>
+          </ul>
+        </div>
+
+        <div class="actions">
+          <!-- gunakan path lokal file yang sudah diupload -->
+          <a
+            class="link"
+            href="/mnt/data/PPT Kelompok 5_Ekuivalen, Invers, dan Konvers.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            >📥 Buka/Download PPT (lokal)</a
+          >
+          <a
+            class="link"
+            href="/mnt/data/Makalah Kelompok 5_Ekuivalen, Invers, dan Konvers.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            >📥 Buka/Download Makalah (lokal)</a
+          >
+        </div>
+
+        <div class="small-note">
+          File disimpan secara lokal di server (path internal). Klik untuk
+          membuka.
+        </div>
+      </div>
+
+      <!-- Modul Interaktif -->
+      <div class="card">
+        <div class="title">🧩 Modul Interaktif</div>
+
+        <label for="topic">Pilih topik</label>
+        <select id="topic">
+          <option value="ekuivalen">Ekuivalen (p ↔ q)</option>
+          <option value="invers">Invers (¬p → ¬q)</option>
+          <option value="konvers">Konvers (q → p)</option>
+        </select>
+
+        <div id="moduleArea" style="margin-top: 12px"></div>
+
+        <div
+          style="
+            margin-top: 12px;
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+          "
+        >
+          <button id="showTableBtn">Tampilkan Tabel Kebenaran</button>
+          <button id="markDoneBtn" class="secondary">Tandai Selesai</button>
+        </div>
+
+        <div id="tableWrap" style="margin-top: 12px"></div>
+      </div>
+    </div>
+
+    <script>
+      const modules = {
+        ekuivalen: {
+          title: "Ekuivalen (p ↔ q)",
+          desc: "Ekuivalen berarti p ↔ q benar bila p dan q sama (keduanya T atau keduanya F).",
+          exampleP: "Santri rutin mengaji setiap pagi",
+          exampleQ: "Kedisiplinan santri meningkat",
+        },
+        invers: {
+          title: "Invers (¬p → ¬q)",
+          desc: "Invers dari p → q adalah ¬p → ¬q. Invers tidak selalu sama kebenarannya dengan p → q.",
+          exampleP: "Santri rutin mengikuti halaqah",
+          exampleQ: "Penguasaan kitab meningkat",
+        },
+        konvers: {
+          title: "Konvers (q → p)",
+          desc: "Konvers dari p → q adalah q → p. Perhatikan bahwa konvers tidak selalu sama nilai kebenarannya.",
+          exampleP: "Ada majelis ilmu tiap malam",
+          exampleQ: "Aktivitas keilmuan meningkat",
+        },
+      };
+
+      const topicSel = document.getElementById("topic");
+      const moduleArea = document.getElementById("moduleArea");
+      const showTableBtn = document.getElementById("showTableBtn");
+      const markDoneBtn = document.getElementById("markDoneBtn");
+      const tableWrap = document.getElementById("tableWrap");
+
+      function renderModule(key) {
+        const m = modules[key];
+        moduleArea.innerHTML = `
+      <h3 style="margin:0 0 8px; color:var(--accent)">${m.title}</h3>
+      <p style="margin:0 0 8px">${m.desc}</p>
+
+      <div style="background:#fff; border:1px solid var(--border); padding:10px; border-radius:8px; text-align:left;">
+        <strong>Contoh (pesantren):</strong>
+        <div style="margin-top:8px; color:var(--muted); font-size:13px">
+          p: <input id="pInput" type="text" value="${m.exampleP}" style="width:100%; padding:8px; margin-top:6px; border-radius:6px; border:1px solid var(--border)"/>
+          q: <input id="qInput" type="text" value="${m.exampleQ}" style="width:100%; padding:8px; margin-top:6px; border-radius:6px; border:1px solid var(--border)"/>
+        </div>
+      </div>
+    `;
+        tableWrap.innerHTML = "";
+        updateMarkButton();
+      }
+
+      function TF(b) {
+        return b ? "T" : "F";
+      }
+
+      function createTruthTable() {
+        const pText = document.getElementById("pInput")?.value || "p";
+        const qText = document.getElementById("qInput")?.value || "q";
+
+        const rows = [
+          { p: true, q: true },
+          { p: true, q: false },
+          { p: false, q: true },
+          { p: false, q: false },
+        ];
+
+        const table = document.createElement("table");
+        table.innerHTML = `<thead><tr>
+      <th>${pText}</th><th>${qText}</th>
+      <th>p → q</th><th>q → p</th><th>¬p → ¬q</th><th>p ↔ q</th>
+    </tr></thead>`;
+        const tbody = document.createElement("tbody");
+
+        rows.forEach((r) => {
+          const p = r.p,
+            q = r.q;
+          const p_impl_q = !p || q;
+          const q_impl_p = !q || p;
+          const notp_impl_notq = !p ? !q : true;
+          const bic = (p && q) || (!p && !q);
+
+          const tr = document.createElement("tr");
+          tr.innerHTML = `<td class="${p ? "true" : "false"}">${TF(p)}</td>
+                      <td class="${q ? "true" : "false"}">${TF(q)}</td>
+                      <td class="${p_impl_q ? "true" : "false"}">${TF(
+            p_impl_q
+          )}</td>
+                      <td class="${q_impl_p ? "true" : "false"}">${TF(
+            q_impl_p
+          )}</td>
+                      <td class="${notp_impl_notq ? "true" : "false"}">${TF(
+            notp_impl_notq
+          )}</td>
+                      <td class="${bic ? "true" : "false"}">${TF(bic)}</td>`;
+          tbody.appendChild(tr);
+        });
+
+        table.appendChild(tbody);
+        tableWrap.innerHTML = "";
+        tableWrap.appendChild(table);
+      }
+
+      topicSel.addEventListener("change", () => {
+        renderModule(topicSel.value);
+      });
+
+      showTableBtn.addEventListener("click", () => {
+        createTruthTable();
+      });
+
+      markDoneBtn.addEventListener("click", () => {
+        const doneList = JSON.parse(localStorage.getItem("doneList") || "{}");
+        const key = topicSel.value;
+        doneList[key] = true;
+        localStorage.setItem("doneList", JSON.stringify(doneList));
+        alert('Modul "' + modules[key].title + '" ditandai selesai.');
+        updateMarkButton();
+      });
+
+      function updateMarkButton() {
+        const done = JSON.parse(localStorage.getItem("doneList") || "{}");
+        const key = topicSel.value;
+        const existingBadge = moduleArea.querySelector(".done-badge");
+        if (done[key]) {
+          markDoneBtn.disabled = true;
+          markDoneBtn.textContent = "Sudah Selesai ✓";
+          if (!existingBadge) {
+            const b = document.createElement("div");
+            b.className = "done-badge";
+            b.textContent = "DONE";
+            b.style.marginTop = "10px";
+            moduleArea.appendChild(b);
+          }
+        } else {
+          markDoneBtn.disabled = false;
+          markDoneBtn.textContent = "Tandai Selesai";
+          if (existingBadge) existingBadge.remove();
+        }
+      }
+
+      // initialize
+      renderModule(topicSel.value);
+      updateMarkButton();
+    </script>
+  </body>
+</html>
